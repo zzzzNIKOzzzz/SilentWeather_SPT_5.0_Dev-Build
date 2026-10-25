@@ -60,7 +60,7 @@ MIT — делайте что хотите, только не продавайт
 zzzNIKOzzz
 
 ## Оригинальная идея:
-[Quiet Weather]([https://sp-mod.com/mod/2407/quicksellflea](https://sp-mod.com/mod/2968/quiet-weather)) мод от wade  (версия для SPT 4.1.6 / Mono)
+[Quiet Weather](https://sp-mod.com/mod/2968/quiet-weather) мод от wade  (версия для SPT 4.1.6 / Mono)
 
 ## Лицензия:
 MIT — делай что хочешь, просто не забудь упомянуть автора.
