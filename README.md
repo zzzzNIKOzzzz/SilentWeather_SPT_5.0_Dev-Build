@@ -64,3 +64,4 @@ zzzNIKOzzz
 
 ## Лицензия:
 MIT — делай что хочешь, просто не забудь упомянуть автора.
+<img width="2560" height="1440" alt="2026-10-25_21-40-08" src="https://github.com/user-attachments/assets/fcb1202d-c166-4b37-b5d4-ba8b8af74e5f" />
