@@ -1,0 +1,56 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <AssemblyName>SilentWeather</AssemblyName>
+    <RootNamespace>SilentWeather</RootNamespace>
+    <Version>1.0.2</Version>
+    <LangVersion>latest</LangVersion>
+    <DebugType>none</DebugType>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+    <SptRoot Condition="'$(SptRoot)' == ''">D:\Games\EscapeFromTarkov5.0</SptRoot>
+    <InteropDir>$(SptRoot)\BepInEx\interop</InteropDir>
+    <BepInExCore>$(SptRoot)\BepInEx\core</BepInExCore>
+  </PropertyGroup>
+  <!--
+    IL2CPP build (SPT 5.0 / EFT 1.1.5.x):
+      - ManagedDir/EscapeFromTarkov_Data/Managed не существует — interop-обёртки лежат в BepInEx\interop.
+      - UnityEngine.CoreModule (interop) возвращает Il2CppReferenceArray<T> из FindObjectsByType —
+        значит, нужен Il2CppInterop.Runtime.dll для разрешения типа на этапе компиляции.
+      - По-прежнему никакой ссылки на Assembly-CSharp: всё ищется по имени в рантайме (GameRef.cs).
+  -->
+  <ItemGroup>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(InteropDir)\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Il2CppInterop.Runtime">
+      <HintPath>$(BepInExCore)\Il2CppInterop.Runtime.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Il2Cppmscorlib">
+      <HintPath>$(InteropDir)\Il2Cppmscorlib.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Il2CppSystem">
+      <HintPath>$(InteropDir)\Il2CppSystem.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="BepInEx.Core">
+      <HintPath>$(BepInExCore)\BepInEx.Core.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="BepInEx.Unity.IL2CPP">
+      <HintPath>$(BepInExCore)\BepInEx.Unity.IL2CPP.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>$(BepInExCore)\0Harmony.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+  <Target Name="CopyToDist" AfterTargets="Build">
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(MSBuildProjectDirectory)\dist" />
+    <Message Importance="high" Text="SilentWeather -> $(MSBuildProjectDirectory)\dist\SilentWeather.dll" />
+  </Target>
+</Project>
